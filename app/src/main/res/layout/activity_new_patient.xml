@@ -57,17 +57,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#eaeaea"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center">
 
                     <RadioButton
                         android:id="@+id/radio_male"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="@string/male"
                         android:textSize="24sp"
                         android:textStyle="normal|bold" />

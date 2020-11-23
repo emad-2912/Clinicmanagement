@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main_page extends AppCompatActivity {
-    Button newPatient, showAllPatient;
+    Button newPatient, showAllPatient, appointments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,21 @@ public class Main_page extends AppCompatActivity {
 
         newPatient = findViewById(R.id.btn_newPatient);
         showAllPatient = findViewById(R.id.btn_showPatient);
+        appointments = findViewById(R.id.btn_Appointments);
 
 
         showAllPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Main_page.this, ShowAllPatients.class));
+            }
+        });
+
+        appointments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main_page.this, Appointments.class));
+
             }
         });
 

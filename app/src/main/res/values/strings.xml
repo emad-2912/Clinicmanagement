@@ -17,7 +17,11 @@
     <string name="diagnosis">الشكوى</string>
     <string name="complaint">التشخيص</string>
     <string name="medicine">الدواء</string>
-    <string name="managment">ادارة العيادة</string>
+    <string name="managment">ادارة عيادة</string>
     <string name="search">بحث</string>
-    <string name="info">ادخل معلومات عن المريض</string>
+    <string name="info">بيانات المريض</string>
+    <string name="name">الاسم</string>
+    <string name="date">التاريخ</string>
+    <string name="time">الوقت</string>
+    <string name="num">الرقم</string>
 </resources>
