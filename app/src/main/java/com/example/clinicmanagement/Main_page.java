@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class Main_page extends AppCompatActivity {
-    Button newPatient;
+    Button newPatient, showAllPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +16,19 @@ public class Main_page extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         newPatient = findViewById(R.id.btn_newPatient);
+        showAllPatient = findViewById(R.id.btn_showPatient);
+
+        showAllPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main_page.this, ShowAllPatients.class));
+            }
+        });
 
         newPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main_page.this , newPatient.class));
+                startActivity(new Intent(Main_page.this , NewPatient.class));
             }
         });
 

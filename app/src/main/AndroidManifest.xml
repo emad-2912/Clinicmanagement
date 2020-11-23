@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.ClinicManagement">
-        <activity android:name=".newPatient"></activity>
+        <activity android:name=".ShowAllPatients"></activity>
+        <activity android:name=".NewPatient" />
         <activity android:name=".Main_page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -18,4 +18,6 @@
     <string name="complaint">التشخيص</string>
     <string name="medicine">الدواء</string>
     <string name="managment">ادارة العيادة</string>
+    <string name="search">بحث</string>
+    <string name="info">ادخل معلومات عن المريض</string>
 </resources>

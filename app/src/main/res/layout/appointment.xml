@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:background="#BFBDBD"
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingEnd="@dimen/_15sdp"
+        android:text="11:30"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:background="#BFBDBD"
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingEnd="@dimen/_15sdp"
+        android:text="10/11/2020"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:background="#BFBDBD"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/_15sdp"
+        android:text="عماد احمد مطر"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tv_app_id"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="#9A9898"
+        android:gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:text="5"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</LinearLayout>

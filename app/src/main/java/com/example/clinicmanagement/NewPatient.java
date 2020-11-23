@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-public class newPatient extends AppCompatActivity {
+public class NewPatient extends AppCompatActivity {
     TextInputEditText fullname, dob, phoneNo, address, length, weight, diagnosis, complaint, medicine;
     Button Save;
     RadioButton male, famale;
@@ -39,9 +39,9 @@ public class newPatient extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(fullname == null || dob == null || phoneNo == null|| address == null){
-                    Toast.makeText(newPatient.this, "يرجى تعبئة الفارغ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NewPatient.this, "يرجى تعبئة الفارغ", Toast.LENGTH_LONG).show();
                 }else {
-                    startActivity(new Intent(newPatient.this, Main_page.class));
+                    startActivity(new Intent(NewPatient.this, Main_page.class));
                 }
             }
         });

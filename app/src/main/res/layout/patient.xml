@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_namePatient"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:background="#BFBDBD"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/_15sdp"
+        android:text="عماد احمد مطر"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_id"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="#9A9898"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="5"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+</LinearLayout>
+
+

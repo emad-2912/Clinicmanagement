@@ -9,16 +9,31 @@
     android:paddingTop="10dp"
     android:paddingEnd="20dp"
     android:paddingBottom="10dp"
-    tools:context=".newPatient"
+    tools:context=".NewPatient"
     >
 
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:gravity="center"
+        android:background="#C9CAC7"
+        android:text="@string/info"
+        android:textColor="#598F1A"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/textView3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,10 +48,8 @@
                     android:id="@+id/fullnametxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:gravity="center"
                     android:hint="@string/fullname" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +85,6 @@
                     android:id="@+id/textView"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/Gender"
@@ -89,10 +101,8 @@
                     android:id="@+id/dobtxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:gravity="center"
                     android:hint="@string/dateOfBirth"
                     android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -105,10 +115,8 @@
                     android:id="@+id/phonetxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:gravity="center"
                     android:hint="@string/phoneNo"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -121,10 +129,8 @@
                     android:id="@+id/addresstxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:gravity="center"
                     android:hint="@string/address" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,10 +142,8 @@
                     android:id="@+id/lengthtxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:gravity="center"
                     android:hint="@string/length"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -152,10 +156,8 @@
                     android:id="@+id/weighttxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:gravity="center"
                     android:hint="@string/weight"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -168,10 +170,8 @@
                     android:id="@+id/diagnosistxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:gravity="center"
                     android:hint="@string/diagnosis" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,10 +183,8 @@
                     android:id="@+id/complainttxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:gravity="center"
                     android:hint="@string/complaint" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -198,10 +196,8 @@
                     android:id="@+id/medicinetxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:gravity="center"
                     android:hint="@string/medicine" />
             </com.google.android.material.textfield.TextInputLayout>
 

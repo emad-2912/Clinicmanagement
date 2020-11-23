@@ -20,7 +20,6 @@
 
         <Button
             android:id="@+id/btn_newPatient"
-            style="@android:style/Widget.Material.Button"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_gravity="center"
@@ -28,7 +27,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="5dp"
-            android:background="#710909"
             android:text="@string/newPatient"
             android:textSize="24sp"
             android:textStyle="normal|bold" />
@@ -42,7 +40,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="5dp"
-            android:background="#710909"
             android:text="@string/showPatient"
             android:textSize="24sp"
             android:textStyle="normal|bold" />
