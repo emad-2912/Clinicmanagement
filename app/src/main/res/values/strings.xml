@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Clinic management</string>
+    <string name="newPatient">اضافة مريض جديد</string>
+    <string name="showPatient">عرض كل المرضى</string>
+    <string name="report">تقارير</string>
+    <string name="Appointments">المواعيد والحجوزات</string>
+    <string name="male">ذكر</string>
+    <string name="female">أنثى</string>
+    <string name="Gender">الجنس</string>
+    <string name="save">حفظ</string>
+    <string name="fullname">اسم الكامل</string>
+    <string name="dateOfBirth">تاريخ الميلاد</string>
+    <string name="phoneNo">رقم الهاتف</string>
+    <string name="address">العنوان</string>
+    <string name="length">الطول</string>
+    <string name="weight">الوزن</string>
+    <string name="diagnosis">الشكوى</string>
+    <string name="complaint">التشخيص</string>
+    <string name="medicine">الدواء</string>
+    <string name="managment">ادارة العيادة</string>
+</resources>
