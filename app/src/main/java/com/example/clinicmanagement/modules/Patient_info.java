@@ -20,6 +20,13 @@ public class Patient_info {
         this.phonNo = phonNo;
         this.address = address;
     }
+    public Patient_info( String fullName, String sex, String birthDay, String phonNo, String address) {
+        this.fullName = fullName;
+        this.sex = sex;
+        this.birthDay = birthDay;
+        this.phonNo = phonNo;
+        this.address = address;
+    }
 
     public int getPatient_id() {
         return patient_id;

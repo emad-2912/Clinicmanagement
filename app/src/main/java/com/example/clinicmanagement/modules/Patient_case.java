@@ -3,14 +3,25 @@ package com.example.clinicmanagement.modules;
 public class Patient_case {
 
     private int patient_id;
-    private double length ;
-    private double weight ;
-    private String diagnosis ;
-    private String complaint ;
-    private String medicine ;
+    private double length;
+    private double weight;
+    private String diagnosis;
+    private String complaint;
+    private String medicine;
+
+    public Patient_case() {
+    }
 
     public Patient_case(int patient_id, double length, double weight, String diagnosis, String complaint, String medicine) {
         this.patient_id = patient_id;
+        this.length = length;
+        this.weight = weight;
+        this.diagnosis = diagnosis;
+        this.complaint = complaint;
+        this.medicine = medicine;
+    }
+    public Patient_case( double length, double weight, String diagnosis, String complaint, String medicine) {
+
         this.length = length;
         this.weight = weight;
         this.diagnosis = diagnosis;

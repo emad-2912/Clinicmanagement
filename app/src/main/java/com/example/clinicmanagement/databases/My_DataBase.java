@@ -5,7 +5,7 @@ import android.content.Context;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 class My_DataBase extends SQLiteAssetHelper {
-    public final static int DB_VERSION = 1;
+    public final static int DB_VERSION = 7;
     public final static String DB_NAME = "patient2.db";
 
     public final static String TB_APPOINTMENST = "appointments";

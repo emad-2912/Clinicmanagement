@@ -13,7 +13,7 @@ import com.example.clinicmanagement.modules.Patient_info;
 
 import java.util.ArrayList;
 
-class Access_DateBase {
+public class Access_DateBase {
     private SQLiteOpenHelper sqLiteOpenHelper;
     private SQLiteDatabase sqLiteDatabase;
     private static Access_DateBase Instance;
