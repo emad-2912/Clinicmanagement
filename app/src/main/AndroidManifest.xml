@@ -9,17 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.ClinicManagement">
-        <activity android:name=".Reports"></activity>
-        <activity android:name=".AddAppointment" />
-        <activity android:name=".ShowAllPatients" />
-        <activity android:name=".Appointments" />
-        <activity android:name=".NewPatient" />
-        <activity android:name=".Main_page">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Reports" />
+        <activity android:name=".AddAppointment" />
+        <activity android:name=".ShowAllPatients" />
+        <activity android:name=".Appointments" />
+        <activity android:name=".NewPatient" />
+        <activity android:name=".Main_page">
+
         </activity>
     </application>
 
