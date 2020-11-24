@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.clinicmanagement.modules.Appointments;
 import com.example.clinicmanagement.modules.Patient_case;
@@ -45,12 +46,12 @@ public class Access_DateBase {
 
     public long itmes_count() {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, My_DataBase.TB_PATIENT_INFO);
-
-
     }
 
     public boolean insertPatient(Patient_info patient_info, Patient_case patient_case) {
         ContentValues contentValues_info = new ContentValues();
+        int id = (int) itmes_count() + 1;
+        contentValues_info.put(My_DataBase.INFO_CLN6_patient_id, id);
 
         contentValues_info.put(My_DataBase.INFO_CLN1_fullName, patient_info.getFullName());
         contentValues_info.put(My_DataBase.INFO_CLN2_sex, patient_info.getSex());
@@ -59,8 +60,10 @@ public class Access_DateBase {
         contentValues_info.put(My_DataBase.INFO_CLN5_address, patient_info.getAddress());
 
         ContentValues contentValues_case = new ContentValues();
-        contentValues_case.put(My_DataBase.CASE_CLN1_patient_id, getLastAddedRowId());
-
+//        getLastAddedRowId();
+//        int id = getLastAddedRowId();
+        contentValues_case.put(My_DataBase.CASE_CLN1_patient_id, id);
+        Log.d("rrrr", id + "e  e e");
         contentValues_case.put(My_DataBase.CASE_CLN2_length, patient_case.getLength());
         contentValues_case.put(My_DataBase.CASE_CLN3_weight, patient_case.getWeight());
         contentValues_case.put(My_DataBase.CASE_CLN4_diagnosis, patient_case.getDiagnosis());
@@ -176,31 +179,32 @@ public class Access_DateBase {
         return arrayList;
     }
 
-    public ArrayList<Patient_case> searchhByIDCase(int id) {
+    public Patient_case searchhByIDCase(int id) {
 
         String a[] = {id + ""};
 
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_PATIENT_CASE + " where " + My_DataBase.TB_PATIENT_CASE + "." + My_DataBase.CASE_CLN1_patient_id
                 + " = ? ", a);
-        ArrayList<Patient_case> arrayList = new ArrayList<>();
+//        ArrayList<Patient_case> arrayList = new ArrayList<>();
+        Patient_case patient_case = new Patient_case();
         if (cursor.moveToFirst()) {
-            do {
+//            do {
 
-                int idP = cursor.getInt(cursor.getColumnIndex(My_DataBase.CASE_CLN1_patient_id));
-                double length = cursor.getDouble(cursor.getColumnIndex(My_DataBase.CASE_CLN2_length));
-                double weight = cursor.getDouble(cursor.getColumnIndex(My_DataBase.CASE_CLN3_weight));
-                String diagnosis = cursor.getString(cursor.getColumnIndex(My_DataBase.CASE_CLN4_diagnosis));
-                String complaint = cursor.getString(cursor.getColumnIndex(My_DataBase.CASE_CLN5_complaint));
-                String medicine = cursor.getString(cursor.getColumnIndex(My_DataBase.CASE_CLN6_medicine));
-                arrayList.add(new Patient_case(idP, length, weight, diagnosis, complaint, medicine));
+            int idP = cursor.getInt(cursor.getColumnIndex(My_DataBase.CASE_CLN1_patient_id));
+            double length = cursor.getDouble(cursor.getColumnIndex(My_DataBase.CASE_CLN2_length));
+            double weight = cursor.getDouble(cursor.getColumnIndex(My_DataBase.CASE_CLN3_weight));
+            String diagnosis = cursor.getString(cursor.getColumnIndex(My_DataBase.CASE_CLN4_diagnosis));
+            String complaint = cursor.getString(cursor.getColumnIndex(My_DataBase.CASE_CLN5_complaint));
+            String medicine = cursor.getString(cursor.getColumnIndex(My_DataBase.CASE_CLN6_medicine));
+            patient_case = new Patient_case(idP, length, weight, diagnosis, complaint, medicine);
 
-            } while (cursor.moveToNext());
+//            } while (cursor.moveToNext());
             cursor.close();
 
 
         }
 
-        return arrayList;
+        return patient_case;
     }
 
     public ArrayList<Patient_info> searchByIDPatientInfos(int id) {
@@ -278,22 +282,5 @@ public class Access_DateBase {
         return arrayList;
     }
 
-    public int getLastAddedRowId() {
-        String queryLastRowInserted = "select last_insert_rowid()";
 
-        final Cursor cursor = sqLiteDatabase.rawQuery(queryLastRowInserted, null);
-        int _idLastInsertedRow = 0;
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    _idLastInsertedRow = cursor.getInt(0);
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-
-        return _idLastInsertedRow;
-
-    }
 }

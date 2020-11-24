@@ -38,7 +38,13 @@ public class ShowAllPatients extends AppCompatActivity {
         patientsRec = new PatientsRec(infoList, getBaseContext(), new OnItemClickOnCar() {
             @Override
             public void OnClickCar(Patient_info patient_info) {
-                startActivity(new Intent(getBaseContext(), NewPatient.class));
+                Intent intent = new Intent(getBaseContext(), NewPatient.class);
+                intent.putExtra("p", patient_info);
+                access_dateBase.open();
+                Patient_case patient_case = access_dateBase.searchhByIDCase(patient_info.getPatient_id());
+                access_dateBase.close();
+                intent.putExtra("c", patient_case);
+                startActivity(intent);
             }
         });
         RecyclerView.LayoutManager l = new GridLayoutManager(this, 1);

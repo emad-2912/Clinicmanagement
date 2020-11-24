@@ -1,6 +1,8 @@
 package com.example.clinicmanagement.modules;
 
-public class Patient_case {
+import java.io.Serializable;
+
+public class Patient_case implements Serializable {
 
     private int patient_id;
     private double length;

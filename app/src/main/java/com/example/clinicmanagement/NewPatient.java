@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -61,6 +62,33 @@ public class NewPatient extends AppCompatActivity {
                 }
             }
         });
+        Intent myIntent = getIntent();
+        Patient_info p = (Patient_info) myIntent.getSerializableExtra("p");
+        Patient_case c = (Patient_case) myIntent.getSerializableExtra("c");
+//        if (p != null) {
+                    try {
+                        et_address.setText(p.getAddress());
+                        et_complaint.setText(c.getComplaint());
+                        et_diagnosis.setText(c.getDiagnosis());
+                        et_dob.setText(p.getBirthDay());
+                        et_fullname.setText(p.getFullName());
+                        et_length.setText(c.getLength() + "");
+                        et_medicine.setText(c.getMedicine());
+                        et_phoneNo.setText(p.getPhonNo());
+                        et_weight.setText(c.getWeight() + "");
+                        if (p.getSex().equalsIgnoreCase("male")) {
+                            male.setActivated(true);
+
+                        } else if (p.getSex().equalsIgnoreCase("female")) {
+                            famale.setActivated(true);
+
+                        }
+                    }catch (Exception e){}
+
+
+//        }
+
+
     }
 
     private void def() {
@@ -79,8 +107,14 @@ public class NewPatient extends AppCompatActivity {
     }
 
     private boolean addNewPatient(Patient_info patient_info, Patient_case patient_case) {
-        return access_dateBase.insertPatient(patient_info, patient_case);
+        access_dateBase.open();
+        Log.d("rr",patient_case.getComplaint()+patient_case.getDiagnosis()+patient_case.getWeight()+"ID : "+patient_case.getPatient_id());
 
+        access_dateBase.insertPatient(patient_info, patient_case);
+
+
+        access_dateBase.close();
+        return true;
     }
 
 }
