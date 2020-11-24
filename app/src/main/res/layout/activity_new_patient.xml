@@ -10,6 +10,8 @@
     android:paddingEnd="20dp"
     android:paddingBottom="10dp"
     tools:context=".NewPatient"
+    android:background="#EDEFFFDC"
+
     >
 
 

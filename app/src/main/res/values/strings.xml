@@ -24,4 +24,5 @@
     <string name="date">التاريخ</string>
     <string name="time">الوقت</string>
     <string name="num">الرقم</string>
+    <string name="addapp">اضافة حجز جديد</string>
 </resources>

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.clinicmanagement.databases.Access_DateBase;
 import com.example.clinicmanagement.modules.Patient_case;
@@ -21,6 +23,7 @@ public class ShowAllPatients extends AppCompatActivity {
     PatientsRec patientsRec;
     List<Patient_info> infoList;
     Access_DateBase access_dateBase;
+    Button addnewPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,17 @@ public class ShowAllPatients extends AppCompatActivity {
         access_dateBase = Access_DateBase.getInstance(getApplicationContext());
         access_dateBase.open();
 
+        addnewPatient = findViewById(R.id.btn_addapp);
+
         infoList = access_dateBase.patientInfos();
         access_dateBase.close();
+
+        addnewPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ShowAllPatients.this, NewPatient.class));
+            }
+        });
 
         patientsRec = new PatientsRec(infoList, getBaseContext(), new OnItemClickOnCar() {
             @Override
