@@ -29,62 +29,90 @@ public class NewPatient extends AppCompatActivity {
         setContentView(R.layout.activity_new_patient);
         access_dateBase = Access_DateBase.getInstance(getBaseContext());
         def();
+
+        access_dateBase.open();
+        Intent myIntent = getIntent();
+        Patient_info p = (Patient_info) myIntent.getSerializableExtra("p");
+        Patient_case c = (Patient_case) myIntent.getSerializableExtra("c");
+//        if (p != null) {
+        try {
+            et_address.setText(p.getAddress());
+            et_complaint.setText(c.getComplaint());
+            et_diagnosis.setText(c.getDiagnosis());
+            et_dob.setText(p.getBirthDay());
+            et_fullname.setText(p.getFullName());
+            et_length.setText(c.getLength() + "");
+            et_medicine.setText(c.getMedicine());
+            et_phoneNo.setText(p.getPhonNo());
+            et_weight.setText(c.getWeight() + "");
+            if (p.getSex().equalsIgnoreCase("male")) {
+                male.setChecked(true);
+            } else if (p.getSex().equalsIgnoreCase("female")) {
+                famale.setChecked(true);
+            }
+        } catch (Exception e) {
+        }
+
+
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (et_fullname.getText().toString() == null || et_dob.getText().toString() == null || et_phoneNo.getText().toString() == null || et_address.getText().toString() == null) {
                     Toast.makeText(NewPatient.this, "يرجى تعبئة الفارغ", Toast.LENGTH_LONG).show();
                 } else {
-                    patient_info = new Patient_info();
-                    patient_case = new Patient_case();
-                    patient_info.setAddress(et_address.getText().toString());
-                    patient_info.setBirthDay(et_dob.getText().toString());
-                    patient_info.setFullName(et_fullname.getText().toString());
-                    patient_info.setPhonNo(et_phoneNo.getText().toString());
-                    if (male.isChecked()) {
-                        patient_info.setSex("male");
-                    } else if (famale.isChecked()) {
-                        patient_info.setSex("female");
-                    }
-                    if (!et_complaint.getText().toString().isEmpty())
-                        patient_case.setComplaint(et_complaint.getText().toString());
-                    if (!et_diagnosis.getText().toString().isEmpty())
-                        patient_case.setDiagnosis(et_diagnosis.getText().toString());
-                    if (!et_length.getText().toString().isEmpty())
-                        patient_case.setLength(Double.parseDouble(et_length.getText().toString()));
-                    if (!et_weight.getText().toString().isEmpty())
-                        patient_case.setWeight(Double.parseDouble(et_weight.getText().toString()));
-                    if (!et_medicine.getText().toString().isEmpty())
-                        patient_case.setMedicine(et_medicine.getText().toString());
 
-                    addNewPatient(patient_info, patient_case);
-                    startActivity(new Intent(NewPatient.this, Main_page.class));
+                    if (p != null) {
+                        p.setFullName(et_fullname.getText().toString());
+                        p.setAddress(et_address.getText().toString());
+                        p.setBirthDay(et_dob.getText().toString());
+                        p.setPhonNo(et_phoneNo.getText().toString());
+                        if (male.isChecked()) {
+                            p.setSex("male");
+                        } else if (famale.isChecked()) {
+                            p.setSex("female");
+                        }
+                        c.setComplaint(et_complaint.getText().toString());
+                        c.setDiagnosis(et_diagnosis.getText().toString());
+                        c.setLength(Double.parseDouble(et_length.getText().toString()));
+                        c.setMedicine(et_medicine.getText().toString());
+                        c.setWeight(Double.parseDouble(et_weight.getText().toString()));
+
+
+                        access_dateBase.update_Info(p);
+                        access_dateBase.update_Case(c);
+
+
+                    } else {
+                        patient_info = new Patient_info();
+                        patient_case = new Patient_case();
+                        patient_info.setAddress(et_address.getText().toString());
+                        patient_info.setBirthDay(et_dob.getText().toString());
+                        patient_info.setFullName(et_fullname.getText().toString());
+                        patient_info.setPhonNo(et_phoneNo.getText().toString());
+                        if (male.isChecked()) {
+                            patient_info.setSex("male");
+                        } else if (famale.isChecked()) {
+                            patient_info.setSex("female");
+                        }
+                        if (!et_complaint.getText().toString().isEmpty())
+                            patient_case.setComplaint(et_complaint.getText().toString());
+                        if (!et_diagnosis.getText().toString().isEmpty())
+                            patient_case.setDiagnosis(et_diagnosis.getText().toString());
+                        if (!et_length.getText().toString().isEmpty())
+                            patient_case.setLength(Double.parseDouble(et_length.getText().toString()));
+                        if (!et_weight.getText().toString().isEmpty())
+                            patient_case.setWeight(Double.parseDouble(et_weight.getText().toString()));
+                        if (!et_medicine.getText().toString().isEmpty())
+                            patient_case.setMedicine(et_medicine.getText().toString());
+
+                        addNewPatient(patient_info, patient_case);
+                    }
+
+
+                    startActivity(new Intent(getBaseContext(), ShowAllPatients.class));
                 }
             }
         });
-        Intent myIntent = getIntent();
-        Patient_info p = (Patient_info) myIntent.getSerializableExtra("p");
-        Patient_case c = (Patient_case) myIntent.getSerializableExtra("c");
-//        if (p != null) {
-                    try {
-                        et_address.setText(p.getAddress());
-                        et_complaint.setText(c.getComplaint());
-                        et_diagnosis.setText(c.getDiagnosis());
-                        et_dob.setText(p.getBirthDay());
-                        et_fullname.setText(p.getFullName());
-                        et_length.setText(c.getLength() + "");
-                        et_medicine.setText(c.getMedicine());
-                        et_phoneNo.setText(p.getPhonNo());
-                        et_weight.setText(c.getWeight() + "");
-                        if (p.getSex().equalsIgnoreCase("male")) {
-                            male.setActivated(true);
-
-                        } else if (p.getSex().equalsIgnoreCase("female")) {
-                            famale.setActivated(true);
-
-                        }
-                    }catch (Exception e){}
-
 
 //        }
 
@@ -107,14 +135,18 @@ public class NewPatient extends AppCompatActivity {
     }
 
     private boolean addNewPatient(Patient_info patient_info, Patient_case patient_case) {
-        access_dateBase.open();
-        Log.d("rr",patient_case.getComplaint()+patient_case.getDiagnosis()+patient_case.getWeight()+"ID : "+patient_case.getPatient_id());
+        Log.d("rr", patient_case.getComplaint() + patient_case.getDiagnosis() + patient_case.getWeight() + "ID : " + patient_case.getPatient_id());
 
         access_dateBase.insertPatient(patient_info, patient_case);
 
 
-        access_dateBase.close();
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        access_dateBase.close();
     }
 
 }

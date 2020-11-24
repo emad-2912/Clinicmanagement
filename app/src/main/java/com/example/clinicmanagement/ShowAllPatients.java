@@ -65,4 +65,10 @@ public class ShowAllPatients extends AppCompatActivity {
         recyclerView.setAdapter(patientsRec);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getBaseContext(), Main_page.class));
+    }
 }

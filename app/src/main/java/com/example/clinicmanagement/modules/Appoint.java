@@ -1,15 +1,34 @@
 package com.example.clinicmanagement.modules;
 
-public class Appointments {
+import java.io.Serializable;
+
+public class Appoint implements Serializable {
 
     private int patientId;
     private String dateTime;
     private String time;
+    private String name;
 
-    public Appointments(int patientId, String dateTime, String time) {
+
+    public Appoint(int patientId, String dateTime, String time) {
         this.time = time;
         this.patientId = patientId;
         this.dateTime = dateTime;
+    }
+
+    public Appoint(int patientId, String dateTime, String time, String name) {
+        this.time = time;
+        this.patientId = patientId;
+        this.dateTime = dateTime;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTime() {

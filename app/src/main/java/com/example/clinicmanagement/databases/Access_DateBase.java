@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.clinicmanagement.modules.Appointments;
+import com.example.clinicmanagement.modules.Appoint;
 import com.example.clinicmanagement.modules.Patient_case;
 import com.example.clinicmanagement.modules.Patient_info;
 
@@ -48,6 +48,11 @@ public class Access_DateBase {
         return DatabaseUtils.queryNumEntries(sqLiteDatabase, My_DataBase.TB_PATIENT_INFO);
     }
 
+
+    public long count_app() {
+        return DatabaseUtils.queryNumEntries(sqLiteDatabase, My_DataBase.TB_APPOINTMENST);
+    }
+
     public boolean insertPatient(Patient_info patient_info, Patient_case patient_case) {
         ContentValues contentValues_info = new ContentValues();
         int id = (int) itmes_count() + 1;
@@ -83,7 +88,7 @@ public class Access_DateBase {
     }
 
 
-    public boolean addNewِِِAppointment(Appointments appointments) {
+    public boolean addNewِِِAppointment(Appoint appointments) {
         ContentValues appointmentsValue = new ContentValues();
 
 
@@ -140,7 +145,23 @@ public class Access_DateBase {
 
     }
 
-    public boolean delete_Appointments(Appointments appointments) {
+    public boolean update_App(Appoint appoint) {
+        String args[] = {appoint.getPatientId() + ""};
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(My_DataBase.APPOINTMENST_CLN2_DATA_TIME, appoint.getDateTime());
+        contentValues.put(My_DataBase.APPOINTMENST_CLN3_TIME, appoint.getTime());
+
+
+        int x = sqLiteDatabase.update(My_DataBase.TB_APPOINTMENST, contentValues
+                , My_DataBase.TB_APPOINTMENST + "." + My_DataBase.APPOINTMENST_CLN1_Forg_APPO_ID + "  =?", args);
+        if (x == 0)
+            return false;
+        return true;
+
+
+    }
+
+    public boolean delete_Appointments(Appoint appointments) {
 
         String agrs[] = {appointments.getPatientId() + ""};
 
@@ -233,21 +254,21 @@ public class Access_DateBase {
         return arrayList;
     }
 
-    public ArrayList<Appointments> searchByIDAppointments(int id) {
+    public ArrayList<Appoint> searchByIDAppointments(int id) {
 
         String a[] = {id + ""};
 
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_APPOINTMENST +
                 " where " + My_DataBase.TB_APPOINTMENST + "." + My_DataBase.APPOINTMENST_CLN1_Forg_APPO_ID
                 + " LIKE  ? ", a);
-        ArrayList<Appointments> arrayList = new ArrayList<>();
+        ArrayList<Appoint> arrayList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
                 int idA = cursor.getInt(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN1_Forg_APPO_ID));
                 String dataTime = cursor.getString(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN2_DATA_TIME));
                 String time = cursor.getString(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN3_TIME));
 
-                arrayList.add(new Appointments(idA, dataTime, time));
+                arrayList.add(new Appoint(idA, dataTime, time));
 
             } while (cursor.moveToNext());
             cursor.close();
@@ -256,6 +277,66 @@ public class Access_DateBase {
         }
 
         return arrayList;
+    }
+
+    public ArrayList<Appoint> getAllAppointments() {
+
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_APPOINTMENST, null);
+        ArrayList<Appoint> arrayList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                int idA = cursor.getInt(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN1_Forg_APPO_ID));
+                String dataTime = cursor.getString(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN2_DATA_TIME));
+                String time = cursor.getString(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN3_TIME));
+                String name = getNameById(idA);
+                arrayList.add(new Appoint(idA, dataTime, time, name));
+
+            } while (cursor.moveToNext());
+            cursor.close();
+
+
+        }
+
+        return arrayList;
+    }
+
+    public String getNameById(int id) {
+        String a[] = {id + ""};
+        String fullName = "";
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_PATIENT_INFO + " where " + My_DataBase.TB_PATIENT_INFO + "." + My_DataBase.INFO_CLN6_patient_id
+                + " =? ", a);
+        if (cursor.moveToFirst()) {
+            fullName = cursor.getString(cursor.getColumnIndex(My_DataBase.INFO_CLN1_fullName));
+
+
+            cursor.close();
+
+
+        }
+
+        return fullName;
+
+
+    }
+
+    public int getIdByName(String name) {
+        String a[] = {name + ""};
+        int i = -1;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_PATIENT_INFO + " where " + My_DataBase.TB_PATIENT_INFO + "." + My_DataBase.INFO_CLN1_fullName
+                + " =? ", a);
+        if (cursor.moveToFirst()) {
+            i = cursor.getInt(cursor.getColumnIndex(My_DataBase.INFO_CLN6_patient_id));
+
+
+            cursor.close();
+
+
+        }
+
+        return i;
+
+
     }
 
     public ArrayList<Patient_info> patientInfos() {
