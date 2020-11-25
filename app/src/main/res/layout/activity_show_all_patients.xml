@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ShowAllPatients"
     android:background="#EDEFFFDC"
-    >
+    tools:context=".ui.ShowAllPatients">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,6 +35,7 @@
 
 
             <SearchView
+                android:id="@+id/pSearch"
                 android:layout_width="match_parent"
 
                 android:layout_height="@dimen/_41sdp"
@@ -43,16 +43,17 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:background="#88BDBDBD"
-                android:queryHint="بحث" />
+                android:queryHint="بحث"
+                app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:orientation="horizontal"
 
             >
 
@@ -91,8 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            />
+            android:layout_marginEnd="@dimen/_10sdp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

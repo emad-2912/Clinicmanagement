@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import com.example.clinicmanagement.R;
 import com.example.clinicmanagement.databases.Access_DateBase;
@@ -25,13 +26,14 @@ public class ShowAllPatients extends AppCompatActivity {
     List<Patient_info> infoList;
     Access_DateBase access_dateBase;
     Button addnewPatient;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_patients);
         recyclerView = findViewById(R.id.recP);
-
+        searchView = findViewById(R.id.pSearch);
         infoList = new ArrayList<>();
         access_dateBase = Access_DateBase.getInstance(getApplicationContext());
         access_dateBase.open();
@@ -41,9 +43,7 @@ public class ShowAllPatients extends AppCompatActivity {
         infoList = access_dateBase.patientInfos();
         access_dateBase.close();
 
-
-
-
+        setSearchView();
         addnewPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,5 +74,30 @@ public class ShowAllPatients extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(getBaseContext(), Main_page.class));
+    }
+
+    void setSearchView() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                access_dateBase.open();
+                ArrayList<Patient_info> patient_infos = access_dateBase.searchByNamePatientInfos(query);
+                patientsRec.setPatient(patient_infos);
+                access_dateBase.close();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                access_dateBase.open();
+                ArrayList<Patient_info> patient_infos = access_dateBase.searchByNamePatientInfos(newText);
+                patientsRec.setPatient(patient_infos);
+                access_dateBase.close();
+
+                return false;
+            }
+        });
+
     }
 }
