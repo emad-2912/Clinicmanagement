@@ -254,21 +254,25 @@ public class Access_DateBase {
         return arrayList;
     }
 
-    public ArrayList<Appoint> searchByIDAppointments(int id) {
+    public ArrayList<Appoint> searchByNameAppointments(String name) {
 
-        String a[] = {id + ""};
+        String a[] = {"%" + name + "%"};
+        String q = "SELECT * , patient_info.fullName from appointments INNER join patient_info on appointments.patientId = patient_info.patient_id where patient_info.fullName";
+//        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_APPOINTMENST +
+//                " where " + My_DataBase.TB_APPOINTMENST + "." + My_DataBase.APPOINTMENST_CLN1_Forg_APPO_ID
+//                + " LIKE  ? ", a);
 
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_APPOINTMENST +
-                " where " + My_DataBase.TB_APPOINTMENST + "." + My_DataBase.APPOINTMENST_CLN1_Forg_APPO_ID
-                + " LIKE  ? ", a);
+        Cursor cursor = sqLiteDatabase.rawQuery(q + " LIKE  ? ", a);
+
+
         ArrayList<Appoint> arrayList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
                 int idA = cursor.getInt(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN1_Forg_APPO_ID));
                 String dataTime = cursor.getString(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN2_DATA_TIME));
                 String time = cursor.getString(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN3_TIME));
-
-                arrayList.add(new Appoint(idA, dataTime, time));
+                String fullName = cursor.getString(cursor.getColumnIndex(My_DataBase.INFO_CLN1_fullName));
+                arrayList.add(new Appoint(idA, dataTime, time, fullName));
 
             } while (cursor.moveToNext());
             cursor.close();

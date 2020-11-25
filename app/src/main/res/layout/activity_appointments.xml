@@ -41,12 +41,16 @@
                 android:id="@+id/searchpatient"
 
                 android:layout_width="match_parent"
+
                 android:layout_height="@dimen/_41sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:background="#88BDBDBD"
-                android:queryHint="بحث" />
+                android:queryHint="بحث"
+                app:actionViewClass="androidx.appcompat.widget.SearchView" />
+            />
+
 
 
         </LinearLayout>
