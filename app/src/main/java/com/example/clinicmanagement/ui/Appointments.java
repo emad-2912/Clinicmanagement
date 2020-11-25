@@ -37,8 +37,8 @@ public class Appointments extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointments);
         recyclerView = findViewById(R.id.app_rec);
-        searchView = findViewById(R.id.searchpatient);
-        appointmentsList = new ArrayList<>();
+        //searchView = findViewById(R.id.searchpatient);
+
         access_dateBase = Access_DateBase.getInstance(getApplicationContext());
 
         access_dateBase.open();

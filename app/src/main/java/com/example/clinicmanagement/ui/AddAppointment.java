@@ -70,6 +70,8 @@ public class AddAppointment extends AppCompatActivity {
             infoList.clear();
             Patient_info patient_info = new Patient_info();
             patient_info.setFullName(a.getName());
+            stringArrayList = new ArrayList<>();
+
             infoList.add(patient_info);
             stringArrayList.clear();
             stringArrayList.add(a.getName());
@@ -105,13 +107,13 @@ public class AddAppointment extends AppCompatActivity {
                 String message;
                 String phone;
 
-                if (name.isEmpty() || ev_date.getText().toString().isEmpty() || ev_time.getText().toString().isEmpty()) {
+                if (ev_date.getText().toString().isEmpty() || ev_time.getText().toString().isEmpty()) {
                     Toast.makeText(AddAppointment.this, "يرجى تعبئة الفارغ", Toast.LENGTH_SHORT).show();
                 } else {
 
                     if (a != null) {
                         phone = "+970" + String.valueOf(access_dateBase.getPhoneByName(name));
-                        message = "المريض: " + name + " موعد الحجز للعيادة تاريخ: " + ev_date.getText().toString()
+                        message = "المريض: " + name + " تم حجز موعد تاريخ: " + ev_date.getText().toString()
                                 + " الساعة: " + ev_time.getText().toString();
                         a.setDateTime(ev_date.getText().toString());
                         a.setTime(ev_time.getText().toString());
@@ -124,9 +126,9 @@ public class AddAppointment extends AppCompatActivity {
                         int id = access_dateBase.getIdByName(name);
                         if (id != -1) {
                             phone = "+970" + String.valueOf(access_dateBase.getPhoneByName(name));
-                            message = "المريض: " + name + " موعد الحجز للعيادة تاريخ: " + ev_date.getText().toString()
+                            message = "المريض: " + name + " تم حجز موعد تاريخ: " + ev_date.getText().toString()
                                     + " الساعة: " + ev_time.getText().toString();
-                            appoint = new Appoint(id, ev_time.getText().toString(), ev_date.getText().toString());
+                            appoint = new Appoint(id, ev_date.getText().toString(), ev_time.getText().toString());
                             access_dateBase.addNewِِِAppointment(appoint);
                             AlertDialog(phone, message);
                             Toast.makeText(getBaseContext(), "تم اضافة حجز جديد", Toast.LENGTH_SHORT).show();
@@ -270,7 +272,7 @@ public class AddAppointment extends AppCompatActivity {
                 spinner_select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                        name = String.valueOf(adapter_save_from.get(position));
+                        name = String.valueOf(adapter_save_from.getItem(position));
                     }
 
                     @Override

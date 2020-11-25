@@ -22,6 +22,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!--  android:background="#90E3E2E2"-->
+
+
             <Button
                 android:id="@+id/btn_addapp"
                 android:layout_width="@dimen/_40sdp"
@@ -34,7 +37,6 @@
                 app:icon="@android:drawable/ic_input_add"
                 app:iconGravity="textStart" />
 
-
             <SearchView
                 android:id="@+id/searchpatient"
 
@@ -45,6 +47,7 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:background="#88BDBDBD"
                 android:queryHint="بحث" />
+
 
         </LinearLayout>
 
