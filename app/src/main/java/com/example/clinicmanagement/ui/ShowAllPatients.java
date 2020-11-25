@@ -41,6 +41,9 @@ public class ShowAllPatients extends AppCompatActivity {
         infoList = access_dateBase.patientInfos();
         access_dateBase.close();
 
+
+
+
         addnewPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

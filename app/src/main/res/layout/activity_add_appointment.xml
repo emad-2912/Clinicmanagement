@@ -48,20 +48,14 @@
                 app:iconTint="#FFFFFF" />
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp">
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/name_app_txt"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/fullname" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="@dimen/_50sdp"
+            android:id="@+id/spinner_selection"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            tools:ignore="MissingClass"
+            />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

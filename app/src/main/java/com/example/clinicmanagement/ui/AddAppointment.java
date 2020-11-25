@@ -17,46 +17,76 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.clinicmanagement.R;
 import com.example.clinicmanagement.databases.Access_DateBase;
 import com.example.clinicmanagement.modules.Appoint;
+import com.example.clinicmanagement.modules.Patient_info;
 import com.google.android.material.textfield.TextInputEditText;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddAppointment extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
 
-    TextInputEditText ev_name, ev_date, ev_time;
+    TextInputEditText ev_date, ev_time;
     Button save, delete;
     Access_DateBase access_dateBase;
     Appoint appoint;
+    List<Patient_info> infoList;
+    private SearchableSpinner spinner_select;
+    String name;
+    ArrayAdapter<String> adapter_save_from;
+    ArrayList<String> stringArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
-        ev_name = findViewById(R.id.name_app_txt);
+        spinner_select = findViewById(R.id.spinner_selection);
         ev_date = findViewById(R.id.date_app_txt);
         ev_time = findViewById(R.id.time_app_txt);
         save = findViewById(R.id.btn_app_save);
         delete = findViewById(R.id.btn_app_delete);
+        infoList = new ArrayList<>();
+        access_dateBase = Access_DateBase.getInstance(getBaseContext());
+
+
         checkForSmsPermission();
+
 
         Intent i = getIntent();
         Appoint a = (Appoint) i.getSerializableExtra("app");
         if (a != null) {
             ev_time.setText(a.getTime());
             ev_date.setText(a.getDateTime());
-            ev_name.setText(a.getName());
-
-
+            infoList.clear();
+            Patient_info patient_info = new Patient_info();
+            patient_info.setFullName(a.getName());
+            infoList.add(patient_info);
+            stringArrayList.clear();
+            stringArrayList.add(a.getName());
+            spinner();
+        } else {
+            access_dateBase.open();
+            infoList = access_dateBase.patientInfos();
+            access_dateBase.close();
+            stringArrayList = new ArrayList<>();
+            for (int i1 = 0; i1 < infoList.size(); i1++) {
+                stringArrayList.add(infoList.get(i1).getFullName());
+            }
+            spinner();
         }
 
 
-        access_dateBase = Access_DateBase.getInstance(getBaseContext());
-        access_dateBase.open();
+         access_dateBase.open();
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,16 +102,16 @@ public class AddAppointment extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message ;
+                String message;
                 String phone;
 
-                if (ev_name.getText().toString().isEmpty() || ev_date.getText().toString().isEmpty() || ev_time.getText().toString().isEmpty()) {
+                if (name.isEmpty() || ev_date.getText().toString().isEmpty() || ev_time.getText().toString().isEmpty()) {
                     Toast.makeText(AddAppointment.this, "يرجى تعبئة الفارغ", Toast.LENGTH_SHORT).show();
                 } else {
 
                     if (a != null) {
-                        phone = "+970" + String.valueOf(access_dateBase.getPhoneByName(ev_name.getText().toString()));
-                        message = "المريض: " + ev_name.getText().toString() + " موعد الحجز للعيادة تاريخ: " + ev_date.getText().toString()
+                        phone = "+970" + String.valueOf(access_dateBase.getPhoneByName(name));
+                        message = "المريض: " + name + " موعد الحجز للعيادة تاريخ: " + ev_date.getText().toString()
                                 + " الساعة: " + ev_time.getText().toString();
                         a.setDateTime(ev_date.getText().toString());
                         a.setTime(ev_time.getText().toString());
@@ -90,12 +120,11 @@ public class AddAppointment extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "تم التعديل على الحجز", Toast.LENGTH_SHORT).show();
 
 
-
                     } else {
-                        int id = access_dateBase.getIdByName(ev_name.getText().toString());
+                        int id = access_dateBase.getIdByName(name);
                         if (id != -1) {
-                            phone = "+970" + String.valueOf(access_dateBase.getPhoneByName(ev_name.getText().toString()));
-                            message = "المريض: " + ev_name.getText().toString() + " موعد الحجز للعيادة تاريخ: " + ev_date.getText().toString()
+                            phone = "+970" + String.valueOf(access_dateBase.getPhoneByName(name));
+                            message = "المريض: " + name + " موعد الحجز للعيادة تاريخ: " + ev_date.getText().toString()
                                     + " الساعة: " + ev_time.getText().toString();
                             appoint = new Appoint(id, ev_time.getText().toString(), ev_date.getText().toString());
                             access_dateBase.addNewِِِAppointment(appoint);
@@ -123,8 +152,7 @@ public class AddAppointment extends AppCompatActivity {
     }
 
 
-    private void sendSMS(String phoneNumber, String message)
-    {
+    private void sendSMS(String phoneNumber, String message) {
         String SENT = "SMS_SENT";
         String DELIVERED = "SMS_DELIVERED";
 
@@ -135,11 +163,10 @@ public class AddAppointment extends AppCompatActivity {
                 new Intent(DELIVERED), 0);
 
         //---when the SMS has been sent---
-        registerReceiver(new BroadcastReceiver(){
+        registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context arg0, Intent arg1) {
-                switch (getResultCode())
-                {
+                switch (getResultCode()) {
                     case Activity.RESULT_OK:
                         Toast.makeText(getBaseContext(), "SMS sent",
                                 Toast.LENGTH_SHORT).show();
@@ -165,11 +192,10 @@ public class AddAppointment extends AppCompatActivity {
         }, new IntentFilter(SENT));
 
         //---when the SMS has been delivered---
-        registerReceiver(new BroadcastReceiver(){
+        registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context arg0, Intent arg1) {
-                switch (getResultCode())
-                {
+                switch (getResultCode()) {
                     case Activity.RESULT_OK:
                         Toast.makeText(getBaseContext(), "SMS delivered",
                                 Toast.LENGTH_SHORT).show();
@@ -187,7 +213,7 @@ public class AddAppointment extends AppCompatActivity {
     }
 
     private void checkForSmsPermission() {
-        String TAG="";
+        String TAG = "";
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, getString(R.string.addapp));
             // Permission not yet granted. Use requestPermissions().
@@ -207,7 +233,7 @@ public class AddAppointment extends AppCompatActivity {
     }
 
 
-    public void AlertDialog(String phoneNo , String message){
+    private void AlertDialog(String phoneNo, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.sureLeave)
                 .setTitle(R.string.leave)
@@ -230,4 +256,35 @@ public class AddAppointment extends AppCompatActivity {
         alert.show();
 
     }
+
+    private void spinner() {
+        ArrayAdapter<String> adapter_save = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringArrayList);
+        spinner_select.setAdapter(adapter_save);
+        spinner_select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                adapter_save_from = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_list_item_1, stringArrayList);
+                spinner_select.setAdapter(adapter_save_from);
+
+                spinner_select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        name = String.valueOf(adapter_save_from.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
 }
