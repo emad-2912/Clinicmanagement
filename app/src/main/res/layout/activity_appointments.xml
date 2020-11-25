@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowAllPatients"
+    tools:context=".ui.ShowAllPatients"
     android:background="#EDEFFFDC"
     >
 
@@ -58,7 +58,7 @@
             >
             <TextView
                 android:id="@+id/tv_time"
-                android:layout_width="@dimen/_60sdp"
+                android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
@@ -73,7 +73,7 @@
 
             <TextView
                 android:id="@+id/tv_date"
-                android:layout_width="@dimen/_90sdp"
+                android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_5sdp"

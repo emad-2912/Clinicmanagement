@@ -9,7 +9,7 @@
     android:paddingTop="10dp"
     android:paddingEnd="20dp"
     android:paddingBottom="10dp"
-    tools:context=".NewPatient"
+    tools:context=".ui.NewPatient"
     android:background="#EDEFFFDC">
 
 
@@ -110,7 +110,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:hint="@string/dateOfBirth"
-                    android:inputType="date" />
+                    android:inputType="datetime" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

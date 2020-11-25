@@ -1,4 +1,4 @@
-package com.example.clinicmanagement;
+package com.example.clinicmanagement.ui;
 
 
 
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import com.example.clinicmanagement.R;
 
 
 public class SplashActivity extends AppCompatActivity {

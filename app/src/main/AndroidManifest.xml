@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.clinicmanagement">
 
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_management_48"
@@ -9,21 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.ClinicManagement">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Reports" />
-        <activity android:name=".AddAppointment" />
-        <activity android:name=".ShowAllPatients" />
-        <activity android:name=".Appointments" />
-        <activity android:name=".NewPatient" />
-        <activity android:name=".Main_page">
+        <activity android:name=".ui.Reports" />
+        <activity android:name=".ui.AddAppointment" />
+        <activity android:name=".ui.ShowAllPatients" />
+        <activity android:name=".ui.Appointments" />
+        <activity android:name=".ui.NewPatient" />
+        <activity android:name=".ui.Main_page">
 
         </activity>
     </application>
+
+
+
 
 </manifest>

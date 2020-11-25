@@ -1,4 +1,4 @@
-package com.example.clinicmanagement;
+package com.example.clinicmanagement.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.clinicmanagement.R;
 import com.example.clinicmanagement.databases.Access_DateBase;
 import com.example.clinicmanagement.modules.Patient_case;
 import com.example.clinicmanagement.modules.Patient_info;
@@ -80,6 +81,7 @@ public class NewPatient extends AppCompatActivity {
 
                         access_dateBase.update_Info(p);
                         access_dateBase.update_Case(c);
+                        Toast.makeText(getBaseContext(), "تم التعديل على معلومات المريض", Toast.LENGTH_SHORT).show();
 
 
                     } else {
@@ -106,16 +108,14 @@ public class NewPatient extends AppCompatActivity {
                             patient_case.setMedicine(et_medicine.getText().toString());
 
                         addNewPatient(patient_info, patient_case);
-                    }
+                        Toast.makeText(getBaseContext(), "تم اضافة مريض جديد", Toast.LENGTH_SHORT).show();
 
+                    }
 
                     startActivity(new Intent(getBaseContext(), ShowAllPatients.class));
                 }
             }
         });
-
-//        }
-
 
     }
 

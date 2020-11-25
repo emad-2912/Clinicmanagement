@@ -339,6 +339,25 @@ public class Access_DateBase {
 
     }
 
+    public int getPhoneByName(String name) {
+        String a[] = {name + ""};
+        int phonNo = -1;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_PATIENT_INFO + " where " + My_DataBase.TB_PATIENT_INFO + "." + My_DataBase.INFO_CLN1_fullName
+                + " =? ", a);
+        if (cursor.moveToFirst()) {
+            phonNo = cursor.getInt(cursor.getColumnIndex(My_DataBase.INFO_CLN4_phonNo));
+
+
+            cursor.close();
+
+
+        }
+
+        return phonNo;
+
+
+    }
+
     public ArrayList<Patient_info> patientInfos() {
 
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_PATIENT_INFO, null);

@@ -1,4 +1,4 @@
-package com.example.clinicmanagement;
+package com.example.clinicmanagement.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.clinicmanagement.R;
 import com.example.clinicmanagement.databases.Access_DateBase;
 
 public class Reports extends AppCompatActivity {

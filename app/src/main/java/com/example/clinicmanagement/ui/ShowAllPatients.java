@@ -1,4 +1,4 @@
-package com.example.clinicmanagement;
+package com.example.clinicmanagement.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.clinicmanagement.R;
 import com.example.clinicmanagement.databases.Access_DateBase;
 import com.example.clinicmanagement.modules.Patient_case;
 import com.example.clinicmanagement.modules.Patient_info;

@@ -25,4 +25,8 @@
     <string name="time">الوقت</string>
     <string name="num">الرقم</string>
     <string name="addapp">معلومات الحجز</string>
+    <string name="yes_off">نعم</string>
+    <string name="no_still">لا</string>
+    <string name="leave">ارسال SMS</string>
+    <string name="sureLeave">هل انت متأكد من ارسال رسالة SMS للمريض عن موعد الحجز ؟</string>
 </resources>
