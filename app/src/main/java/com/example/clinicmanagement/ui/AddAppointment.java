@@ -351,4 +351,10 @@ public class AddAppointment extends AppCompatActivity implements View.OnClickLis
             timePickerDialog.show();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getBaseContext(), Appointments.class));
+    }
 }

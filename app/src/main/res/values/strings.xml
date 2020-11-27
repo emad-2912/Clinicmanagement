@@ -30,4 +30,7 @@
     <string name="leave">ارسال SMS</string>
     <string name="sureLeave">هل انت متأكد من ارسال رسالة SMS للمريض عن موعد الحجز ؟</string>
     <string name="AppointmentNow">مواعيد الحجز اليوم</string>
+    <string name="Entertime">ادخل الوقت</string>
+    <string name="Enterdate">ادخل التاريخ</string>
+
 </resources>

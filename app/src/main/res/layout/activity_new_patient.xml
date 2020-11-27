@@ -100,16 +100,15 @@
             </LinearLayout>
 
 
-
-                <Button
-                    android:id="@+id/dobtxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-
-                    android:hint="@string/dateOfBirth"
-                    android:inputType="datetime" />
+            <Button
+                android:id="@+id/dobtxt"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/dateOfBirth"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

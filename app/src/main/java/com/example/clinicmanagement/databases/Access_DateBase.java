@@ -303,10 +303,10 @@ public class Access_DateBase {
 
     public ArrayList<Appoint> getAllNowAppointments(String date) {
 
-        String a[] = {"%" + date + "%"};
+        String a[] = { date +""} ;
 
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_APPOINTMENST + " where " + My_DataBase.APPOINTMENST_CLN2_DATA_TIME
-                + " LIKE  ? ", a);
+                + " =? ", a);
         ArrayList<Appoint> arrayList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {

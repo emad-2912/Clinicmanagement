@@ -63,11 +63,11 @@
                 android:id="@+id/btn_date"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/btn_date"
                 android:layout_alignStart="@+id/btn_date"
                 android:layout_alignLeft="@+id/btn_date"
-                android:text="SELECT A DATE" />
+                android:text="@string/Enterdate" />
 
 <!--            <com.google.android.material.textfield.TextInputLayout-->
 <!--                android:layout_width="0dp"-->
@@ -93,11 +93,11 @@
                 android:id="@+id/btn_time"
                  android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_alignBottom="@+id/in_date"
                 android:layout_toEndOf="@+id/in_date"
                 android:layout_toRightOf="@+id/in_date"
-                android:text="SELECT TIME"
+                android:text="@string/Entertime"
 
                 />
 
@@ -120,7 +120,7 @@
         <Button
             android:id="@+id/btn_app_save"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center"
             android:text="@string/save"
