@@ -284,8 +284,6 @@ public class Access_DateBase {
     }
 
     public ArrayList<Appoint> getAllAppointments() {
-
-
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_APPOINTMENST, null);
         ArrayList<Appoint> arrayList = new ArrayList<>();
         if (cursor.moveToFirst()) {
@@ -298,8 +296,28 @@ public class Access_DateBase {
 
             } while (cursor.moveToNext());
             cursor.close();
+        }
 
+        return arrayList;
+    }
 
+    public ArrayList<Appoint> getAllNowAppointments(String date) {
+
+        String a[] = {"%" + date + "%"};
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM  " + My_DataBase.TB_APPOINTMENST + " where " + My_DataBase.APPOINTMENST_CLN2_DATA_TIME
+                + " LIKE  ? ", a);
+        ArrayList<Appoint> arrayList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                int idA = cursor.getInt(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN1_Forg_APPO_ID));
+                String dataTime = cursor.getString(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN2_DATA_TIME));
+                String time = cursor.getString(cursor.getColumnIndex(My_DataBase.APPOINTMENST_CLN3_TIME));
+                String name = getNameById(idA);
+                arrayList.add(new Appoint(idA, dataTime, time, name));
+
+            } while (cursor.moveToNext());
+            cursor.close();
         }
 
         return arrayList;

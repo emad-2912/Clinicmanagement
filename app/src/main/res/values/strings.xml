@@ -29,4 +29,5 @@
     <string name="no_still">لا</string>
     <string name="leave">ارسال SMS</string>
     <string name="sureLeave">هل انت متأكد من ارسال رسالة SMS للمريض عن موعد الحجز ؟</string>
+    <string name="AppointmentNow">مواعيد الحجز اليوم</string>
 </resources>

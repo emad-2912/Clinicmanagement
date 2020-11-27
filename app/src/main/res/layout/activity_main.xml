@@ -46,6 +46,17 @@
             android:textStyle="normal|bold" />
 
         <Button
+            android:id="@+id/btn_AppointmentNow"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/AppointmentNow"
+            android:textSize="24sp"
+            android:textStyle="normal|bold" />
+
+        <Button
             android:id="@+id/btn_Appointments"
             android:layout_width="match_parent"
             android:layout_height="70dp"

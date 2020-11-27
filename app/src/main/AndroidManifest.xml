@@ -4,7 +4,7 @@
     package="com.example.clinicmanagement">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +14,7 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.ClinicManagement"
         tools:replace="android:label,android:supportsRtl">
+        <activity android:name=".ui.AppointNow"></activity>
         <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,12 +27,7 @@
         <activity android:name=".ui.ShowAllPatients" />
         <activity android:name=".ui.Appointments" />
         <activity android:name=".ui.NewPatient" />
-        <activity android:name=".ui.Main_page">
-
-        </activity>
+        <activity android:name=".ui.Main_page"></activity>
     </application>
-
-
-
 
 </manifest>

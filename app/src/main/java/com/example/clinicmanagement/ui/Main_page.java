@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.example.clinicmanagement.R;
 
 public class Main_page extends AppCompatActivity {
-    Button newPatient, showAllPatient, appointments, report;
+    Button newPatient, showAllPatient, appointments, report, AppointmentNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +21,20 @@ public class Main_page extends AppCompatActivity {
         showAllPatient = findViewById(R.id.btn_showPatient);
         appointments = findViewById(R.id.btn_Appointments);
         report = findViewById(R.id.btn_report);
+        AppointmentNow = findViewById(R.id.btn_AppointmentNow);
 
 
         showAllPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main_page.this, ShowAllPatients.class));
+                startActivity(new Intent(getBaseContext(), ShowAllPatients.class));
             }
         });
 
         appointments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main_page.this, Appointments.class));
+                startActivity(new Intent(getBaseContext(), Appointments.class));
 
             }
         });
@@ -41,40 +42,26 @@ public class Main_page extends AppCompatActivity {
         newPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main_page.this, NewPatient.class));
+                startActivity(new Intent(getBaseContext(), NewPatient.class));
             }
         });
 
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main_page.this, Reports.class));
+                startActivity(new Intent(getBaseContext(), Reports.class));
+            }
+        });
+
+        AppointmentNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), AppointNow.class));
             }
         });
 
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-//         final String TAG = "";
-//        switch (requestCode) {
-//            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
-//                if (permissions[0].equalsIgnoreCase(Manifest.permission.SEND_SMS)
-//                        && grantResults[0] ==
-//                        PackageManager.PERMISSION_GRANTED) {
-//                    // Permission was granted.
-//                } else {
-//                    // Permission denied.
-//                    Log.d(TAG, getString(R.string.failure_permission));
-//                    Toast.makeText(Main_page.this,
-//                            getString(R.string.failure_permission),
-//                            Toast.LENGTH_SHORT).show();
-//                    // Disable the message button.
-//                    disableSmsButton();
-//                }
-//            }
-//        }
-//    }
 
 
 
