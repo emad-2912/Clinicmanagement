@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EDEFFFDC"
     android:orientation="vertical"
     android:paddingStart="20dp"
     android:paddingTop="10dp"
     android:paddingEnd="20dp"
     android:paddingBottom="10dp"
-    tools:context=".ui.NewPatient"
-    android:background="#EDEFFFDC">
+    tools:context=".ui.NewPatient">
 
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
-        android:gravity="center"
         android:background="#C9CAC7"
+        android:gravity="center"
         android:text="@string/info"
         android:textColor="#598F1A"
         android:textSize="24sp"
@@ -99,19 +99,17 @@
                     android:textStyle="normal|bold" />
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
+
+                <Button
                     android:id="@+id/dobtxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+
                     android:hint="@string/dateOfBirth"
                     android:inputType="datetime" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

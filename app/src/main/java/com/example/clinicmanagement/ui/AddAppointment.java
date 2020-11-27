@@ -6,7 +6,9 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,7 +22,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.clinicmanagement.R;
@@ -31,12 +36,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class AddAppointment extends AppCompatActivity {
+public class AddAppointment extends AppCompatActivity implements View.OnClickListener {
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
+    Button btnDatePicker, btnTimePicker;
+    private int mYear, mMonth, mDay, mHour, mMinute;
 
-    TextInputEditText ev_date, ev_time;
+    //    TextInputEditText ev_date, ev_time;
     Button save, delete;
     Access_DateBase access_dateBase;
     Appoint appoint;
@@ -51,10 +59,16 @@ public class AddAppointment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
         spinner_select = findViewById(R.id.spinner_selection);
-        ev_date = findViewById(R.id.date_app_txt);
-        ev_time = findViewById(R.id.time_app_txt);
+//        ev_date = findViewById(R.id.date_app_txt);
+//        ev_time = findViewById(R.id.time_app_txt);
         save = findViewById(R.id.btn_app_save);
         delete = findViewById(R.id.btn_app_delete);
+        btnDatePicker = (Button) findViewById(R.id.btn_date);
+        btnTimePicker = (Button) findViewById(R.id.btn_time);
+
+
+        btnDatePicker.setOnClickListener(this);
+        btnTimePicker.setOnClickListener(this);
         infoList = new ArrayList<>();
         access_dateBase = Access_DateBase.getInstance(getBaseContext());
 
@@ -65,8 +79,10 @@ public class AddAppointment extends AppCompatActivity {
         Intent i = getIntent();
         Appoint a = (Appoint) i.getSerializableExtra("app");
         if (a != null) {
-            ev_time.setText(a.getTime());
-            ev_date.setText(a.getDateTime());
+//            ev_time.setText(a.getTime());
+//            ev_date.setText(a.getDateTime());
+            btnDatePicker.setText(a.getDateTime());
+            btnTimePicker.setText(a.getTime());
             infoList.clear();
             Patient_info patient_info = new Patient_info();
             patient_info.setFullName(a.getName());
@@ -88,7 +104,7 @@ public class AddAppointment extends AppCompatActivity {
         }
 
 
-         access_dateBase.open();
+        access_dateBase.open();
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,16 +123,16 @@ public class AddAppointment extends AppCompatActivity {
                 String message;
                 String phone;
 
-                if (ev_date.getText().toString().isEmpty() || ev_time.getText().toString().isEmpty()) {
+                if (btnDatePicker.getText().toString().isEmpty() || btnDatePicker.getText().toString().isEmpty()) {
                     Toast.makeText(AddAppointment.this, "يرجى تعبئة الفارغ", Toast.LENGTH_SHORT).show();
                 } else {
 
                     if (a != null) {
                         phone = "+970" + String.valueOf(access_dateBase.getPhoneByName(name));
-                        message = "المريض: " + name + " تم حجز موعد تاريخ: " + ev_date.getText().toString()
-                                + " الساعة: " + ev_time.getText().toString();
-                        a.setDateTime(ev_date.getText().toString());
-                        a.setTime(ev_time.getText().toString());
+                        message = "المريض: " + name + " تم حجز موعد تاريخ: " + btnDatePicker.getText().toString()
+                                + " الساعة: " + btnTimePicker.getText().toString();
+                        a.setDateTime(btnDatePicker.getText().toString());
+                        a.setTime(btnTimePicker.getText().toString());
                         access_dateBase.update_App(a);
                         AlertDialog(phone, message);
                         Toast.makeText(getBaseContext(), "تم التعديل على الحجز", Toast.LENGTH_SHORT).show();
@@ -126,9 +142,9 @@ public class AddAppointment extends AppCompatActivity {
                         int id = access_dateBase.getIdByName(name);
                         if (id != -1) {
                             phone = "+970" + String.valueOf(access_dateBase.getPhoneByName(name));
-                            message = "المريض: " + name + " تم حجز موعد تاريخ: " + ev_date.getText().toString()
-                                    + " الساعة: " + ev_time.getText().toString();
-                            appoint = new Appoint(id, ev_date.getText().toString(), ev_time.getText().toString());
+                            message = "المريض: " + name + " تم حجز موعد تاريخ: " + btnDatePicker.getText().toString()
+                                    + " الساعة: " + btnTimePicker.getText().toString();
+                            appoint = new Appoint(id, btnDatePicker.getText().toString(), btnTimePicker.getText().toString());
                             access_dateBase.addNewِِِAppointment(appoint);
                             AlertDialog(phone, message);
                             Toast.makeText(getBaseContext(), "تم اضافة حجز جديد", Toast.LENGTH_SHORT).show();
@@ -289,4 +305,50 @@ public class AddAppointment extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+
+        if (v == btnDatePicker) {
+
+            // Get Current Date
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+
+                            btnDatePicker.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        }
+        if (v == btnTimePicker) {
+
+            // Get Current Time
+            final Calendar c = Calendar.getInstance();
+            mHour = c.get(Calendar.HOUR_OF_DAY);
+            mMinute = c.get(Calendar.MINUTE);
+
+            // Launch Time Picker Dialog
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay,
+                                              int minute) {
+
+                            btnTimePicker.setText(hourOfDay + ":" + minute);
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+        }
+    }
 }

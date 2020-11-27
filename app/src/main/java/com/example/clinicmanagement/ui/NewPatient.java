@@ -2,12 +2,16 @@ package com.example.clinicmanagement.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.clinicmanagement.R;
@@ -16,13 +20,17 @@ import com.example.clinicmanagement.modules.Patient_case;
 import com.example.clinicmanagement.modules.Patient_info;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class NewPatient extends AppCompatActivity {
-    private TextInputEditText et_fullname, et_dob, et_phoneNo, et_address, et_length, et_weight, et_diagnosis, et_complaint, et_medicine;
-    private Button Save;
+import java.util.Calendar;
+
+public class NewPatient extends AppCompatActivity implements View.OnClickListener {
+    private TextInputEditText et_fullname, et_phoneNo, et_address, et_length, et_weight, et_diagnosis, et_complaint, et_medicine;
+    private Button Save, et_dob;
+
     private RadioButton male, famale;
     private Access_DateBase access_dateBase;
     private Patient_info patient_info;
     private Patient_case patient_case;
+    private int mYear, mMonth, mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +38,7 @@ public class NewPatient extends AppCompatActivity {
         setContentView(R.layout.activity_new_patient);
         access_dateBase = Access_DateBase.getInstance(getBaseContext());
         def();
-
+        et_dob.setOnClickListener(this::onClick);
         access_dateBase.open();
         Intent myIntent = getIntent();
         Patient_info p = (Patient_info) myIntent.getSerializableExtra("p");
@@ -149,4 +157,30 @@ public class NewPatient extends AppCompatActivity {
         access_dateBase.close();
     }
 
+    @Override
+    public void onClick(View v) {
+
+        if (v == et_dob) {
+
+            // Get Current Date
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+
+                            et_dob.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        }
+    }
 }

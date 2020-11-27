@@ -15,7 +15,6 @@ import android.widget.Button;
 import com.example.clinicmanagement.R;
 import com.example.clinicmanagement.databases.Access_DateBase;
 import com.example.clinicmanagement.modules.Appoint;
-import com.example.clinicmanagement.modules.Patient_info;
 import com.example.clinicmanagement.recyclers.AppointmentRec;
 import com.example.clinicmanagement.recyclers.OnItemClickOnAppountemnt;
 
@@ -32,8 +31,7 @@ public class Appointments extends AppCompatActivity {
     List<Appoint> appointmentsList;
     Access_DateBase access_dateBase;
     SearchView searchView;
-    String name;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
