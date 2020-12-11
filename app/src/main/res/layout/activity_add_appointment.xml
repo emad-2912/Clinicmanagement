@@ -67,7 +67,7 @@
                 android:layout_below="@+id/btn_date"
                 android:layout_alignStart="@+id/btn_date"
                 android:layout_alignLeft="@+id/btn_date"
-                android:text="@string/Enterdate" />
+                android:hint="@string/Enterdate" />
 
 <!--            <com.google.android.material.textfield.TextInputLayout-->
 <!--                android:layout_width="0dp"-->
@@ -97,7 +97,7 @@
                 android:layout_alignBottom="@+id/in_date"
                 android:layout_toEndOf="@+id/in_date"
                 android:layout_toRightOf="@+id/in_date"
-                android:text="@string/Entertime"
+                android:hint="@string/Entertime"
 
                 />
 

@@ -67,7 +67,7 @@ public class NewPatient extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onClick(View v) {
                 if (et_fullname.getText().toString() == null || et_dob.getText().toString() == null || et_phoneNo.getText().toString() == null || et_address.getText().toString() == null) {
-                    Toast.makeText(NewPatient.this, "يرجى تعبئة الفارغ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NewPatient.this, getString(R.string.Please_fill), Toast.LENGTH_LONG).show();
                 } else {
 
                     if (p != null) {
@@ -89,7 +89,7 @@ public class NewPatient extends AppCompatActivity implements View.OnClickListene
 
                         access_dateBase.update_Info(p);
                         access_dateBase.update_Case(c);
-                        Toast.makeText(getBaseContext(), "تم التعديل على معلومات المريض", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), getString(R.string.Modified), Toast.LENGTH_SHORT).show();
 
 
                     } else {
@@ -116,7 +116,7 @@ public class NewPatient extends AppCompatActivity implements View.OnClickListene
                             patient_case.setMedicine(et_medicine.getText().toString());
 
                         addNewPatient(patient_info, patient_case);
-                        Toast.makeText(getBaseContext(), "تم اضافة مريض جديد", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(),  getString(R.string.Added), Toast.LENGTH_SHORT).show();
 
                     }
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ادارة العيادة الطبية</string>
+    <string name="newPatient">اضافة مريض جديد</string>
+    <string name="showPatient">عرض كل المرضى</string>
+    <string name="report">تقارير</string>
+    <string name="Appointments">المواعيد والحجوزات</string>
+    <string name="male">ذكر</string>
+    <string name="female">أنثى</string>
+    <string name="Gender">الجنس</string>
+    <string name="save">حفظ</string>
+    <string name="fullname">اسم الكامل</string>
+    <string name="dateOfBirth">تاريخ الميلاد</string>
+    <string name="phoneNo">رقم الهاتف</string>
+    <string name="address">العنوان</string>
+    <string name="length">الطول</string>
+    <string name="weight">الوزن</string>
+    <string name="diagnosis">الشكوى</string>
+    <string name="complaint">التشخيص</string>
+    <string name="medicine">الدواء</string>
+
+    <string name="search">بحث</string>
+    <string name="info">بيانات المريض</string>
+    <string name="name">الاسم</string>
+    <string name="date">التاريخ</string>
+    <string name="time">الوقت</string>
+    <string name="num">الرقم</string>
+    <string name="addapp">معلومات الحجز</string>
+    <string name="yes_off">نعم</string>
+    <string name="no_still">لا</string>
+    <string name="send">ارسال SMS</string>
+    <string name="leave">خروج</string>
+    <string name="suresend">هل انت متأكد من ارسال رسالة SMS للمريض عن موعد الحجز ؟</string>
+    <string name="sureLeave">هل تريد الخروج من التطبيق؟</string>
+    <string name="AppointmentNow">مواعيد الحجز اليوم</string>
+    <string name="Entertime">ادخل الوقت</string>
+    <string name="Enterdate">ادخل التاريخ</string>
+    <string name="numPatient">المرضى</string>
+    <string name="Reservations">الحجوزات</string>
+
+    <string name="deleted">تم حذف</string>
+    <string name="delete">لايوجد شيء لحذفه</string>
+    <string name="Please_fill">يرجى تعبئة الفارغ</string>
+    <string name="Modified">تم التعديل</string>
+    <string name="Added">تم الاضافة</string>
+
+
+
+
+</resources>
+

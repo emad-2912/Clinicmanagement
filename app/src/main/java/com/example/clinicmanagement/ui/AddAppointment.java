@@ -110,10 +110,10 @@ public class AddAppointment extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v) {
                 if (a != null) {
                     access_dateBase.delete_Appointments(a);
-                    Toast.makeText(getBaseContext(), "تم حذف الحجز", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.deleted), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getBaseContext(), Appointments.class));
                 } else {
-                    Toast.makeText(getBaseContext(), "لايوجد شيء لحذفه", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.delete), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -124,7 +124,7 @@ public class AddAppointment extends AppCompatActivity implements View.OnClickLis
                 String phone;
 
                 if (btnDatePicker.getText().toString().isEmpty() || btnDatePicker.getText().toString().isEmpty()) {
-                    Toast.makeText(AddAppointment.this, "يرجى تعبئة الفارغ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddAppointment.this, getString(R.string.Please_fill), Toast.LENGTH_SHORT).show();
                 } else {
 
                     if (a != null) {
@@ -135,7 +135,7 @@ public class AddAppointment extends AppCompatActivity implements View.OnClickLis
                         a.setTime(btnTimePicker.getText().toString());
                         access_dateBase.update_App(a);
                         AlertDialog(phone, message);
-                        Toast.makeText(getBaseContext(), "تم التعديل على الحجز", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), getString(R.string.Modified), Toast.LENGTH_SHORT).show();
 
 
                     } else {
@@ -147,11 +147,8 @@ public class AddAppointment extends AppCompatActivity implements View.OnClickLis
                             appoint = new Appoint(id, btnDatePicker.getText().toString(), btnTimePicker.getText().toString());
                             access_dateBase.addNewِِِAppointment(appoint);
                             AlertDialog(phone, message);
-                            Toast.makeText(getBaseContext(), "تم اضافة حجز جديد", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), getString(R.string.Added), Toast.LENGTH_SHORT).show();
 
-
-                        } else {
-                            Toast.makeText(getBaseContext(), "يرحى التاكد من الاسم المدخل", Toast.LENGTH_LONG).show();
 
                         }
                     }
@@ -253,8 +250,8 @@ public class AddAppointment extends AppCompatActivity implements View.OnClickLis
 
     private void AlertDialog(String phoneNo, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.sureLeave)
-                .setTitle(R.string.leave)
+        builder.setMessage(R.string.suresend)
+                .setTitle(R.string.send)
                 .setCancelable(false)
                 .setPositiveButton(R.string.yes_off, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

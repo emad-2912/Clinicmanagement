@@ -44,7 +44,7 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:background="#88BDBDBD"
-                android:queryHint="بحث"
+                android:queryHint="@string/search"
                 app:actionViewClass="androidx.appcompat.widget.SearchView" />
             />
 
@@ -114,7 +114,7 @@
                 android:background="#9A9898"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
-                android:text="الرقم"
+                android:text="@string/num"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />

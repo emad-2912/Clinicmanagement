@@ -9,9 +9,9 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_management_48"
-        android:label="@string/managment"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="false"
+        android:supportsRtl="true"
         android:theme="@style/Theme.ClinicManagement"
         tools:replace="android:label,android:supportsRtl">
 
@@ -28,11 +28,7 @@
         <activity android:name=".ui.ShowAllPatients" />
         <activity android:name=".ui.Appointments" />
         <activity android:name=".ui.NewPatient">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.Main_page" />
     </application>
