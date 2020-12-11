@@ -1,18 +1,28 @@
 package com.example.clinicmanagement.ui;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.clinicmanagement.R;
 
+import java.util.Locale;
+
 public class Main_page extends AppCompatActivity {
     Button newPatient, showAllPatient, appointments, report, AppointmentNow;
+    TextView btn_english, btn_arbice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +35,31 @@ public class Main_page extends AppCompatActivity {
         report = findViewById(R.id.btn_report);
         AppointmentNow = findViewById(R.id.btn_AppointmentNow);
 
+        btn_arbice = findViewById(R.id.btn_arbice);
+        btn_english = findViewById(R.id.btn_english);
+
+        btn_english.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                setLocale("en");
+                getSharedPreferences("lang", MODE_PRIVATE).edit().putString("lan", "en").apply();
+
+                startActivity(new Intent(getBaseContext(), Main_page.class));
+            }
+        });
+
+
+        btn_arbice.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                setLocale("ar");
+                getSharedPreferences("lang", MODE_PRIVATE).edit().putString("lan", "ar").apply();
+
+                startActivity(new Intent(getBaseContext(), Main_page.class));
+            }
+        });
 
         showAllPatient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +124,23 @@ public class Main_page extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public void setLocale(String lang) {
+
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+
+        Configuration conf = res.getConfiguration();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            conf.setLocale(new Locale(lang.toLowerCase()));
+
+        } else {
+            conf.locale = new Locale(lang.toLowerCase());
+
+        }
+
+        res.updateConfiguration(conf, dm);
+    }
 
 
 }

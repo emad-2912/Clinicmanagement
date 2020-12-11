@@ -81,7 +81,12 @@ public class AddAppointment extends AppCompatActivity implements View.OnClickLis
         if (a != null) {
 //            ev_time.setText(a.getTime());
 //            ev_date.setText(a.getDateTime());
-            btnDatePicker.setText(a.getDateTime());
+            String date = a.getDateTime();
+            if (date.length() == 1) {
+
+
+            }
+            btnDatePicker.setText(date);
             btnTimePicker.setText(a.getTime());
             infoList.clear();
             Patient_info patient_info = new Patient_info();
@@ -320,8 +325,16 @@ public class AddAppointment extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
-
-                            btnDatePicker.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            int mon = monthOfYear + 1;
+                            String day = String.valueOf(dayOfMonth);
+                            String month = String.valueOf((mon));
+                            if (dayOfMonth < 10 ) {
+                                day = "0" + dayOfMonth;
+                            }
+                            if (mon < 10) {
+                                month = "0" +mon;
+                            }
+                            btnDatePicker.setText(day + "-" + month + "-" + year);
 
                         }
                     }, mYear, mMonth, mDay);
@@ -342,7 +355,17 @@ public class AddAppointment extends AppCompatActivity implements View.OnClickLis
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
 
-                            btnTimePicker.setText(hourOfDay + ":" + minute);
+                            String mint = String.valueOf(minute);
+                            String hour = String.valueOf(hourOfDay);
+                            if (minute < 10 ) {
+                                mint="0" + minute;
+                            }
+                            if (hourOfDay < 10) {
+                                hour="0" + hourOfDay;
+
+                            }
+                            btnTimePicker.setText(hour + ":" + mint);
+
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
